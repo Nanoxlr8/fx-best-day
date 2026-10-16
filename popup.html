@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="popup.css" />
+  <title>FX Best-Day</title>
+</head>
+<body>
+  <header>
+    <div class="logo">💱</div>
+    <div>
+      <h1>FX Best-Day</h1>
+      <div class="pair" id="pairLabel">USD → EGP</div>
+    </div>
+    <button id="settingsBtn" class="icon-btn" title="Settings">⚙</button>
+  </header>
+
+  <section class="rate-card">
+    <div class="rate-now" id="rateNow">—</div>
+    <div class="rate-sub" id="rateSub">fetching…</div>
+  </section>
+
+  <section class="verdict" id="verdictBox">
+    <div class="verdict-label">VERDICT</div>
+    <div class="verdict-text" id="verdictText">…</div>
+    <div class="verdict-reason" id="verdictReason"></div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><span class="k">7-day avg</span><span class="v" id="avg7">—</span></div>
+    <div class="stat"><span class="k">7-day high</span><span class="v" id="high7">—</span></div>
+    <div class="stat"><span class="k">7-day low</span><span class="v" id="low7">—</span></div>
+  </section>
+
+  <section class="spark">
+    <canvas id="spark" width="280" height="60"></canvas>
+  </section>
+
+  <footer>
+    <button id="refreshBtn" class="primary">↻ Refresh</button>
+    <div class="updated" id="updated">—</div>
+  </footer>
+
+  <section class="data-ops">
+    <button id="exportBtn" class="ghost">⤓ Export</button>
+    <button id="importBtn" class="ghost">⤒ Import</button>
+    <input type="file" id="importFile" accept="application/json" hidden />
+  </section>
+
+  <div class="toast" id="toast"></div>
+  <script src="fx-core.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

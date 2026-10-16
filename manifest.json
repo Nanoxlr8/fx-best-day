@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "FX Best-Day — Convert at the Right Time",
+  "version": "1.0.0",
+  "description": "Tracks any USD/currency pair and tells you the single best day this week to convert — so you don't move salary or remittance money on a bad rate. Free API, no account needed.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "FX Best-Day"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": [
+    "storage",
+    "alarms",
+    "notifications"
+  ],
+  "host_permissions": [
+    "https://v6.exchangerate-api.com/*",
+    "https://open.er-api.com/*"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}

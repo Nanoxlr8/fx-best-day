@@ -1,0 +1,8 @@
+# Local development settings and packaged output
+.env
+.env.*
+*.pem
+*.key
+dist/
+build/
+*.zip

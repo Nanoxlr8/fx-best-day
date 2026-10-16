@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FX Best-Day Settings</title>
+  <style>
+    body { font-family: sans-serif; max-width: 520px; margin: 24px auto; padding: 0 16px; color: #1c2433; }
+    label { display: block; margin: 14px 0 4px; font-weight: 600; font-size: 13px; }
+    input, select { width: 100%; padding: 8px; border: 1px solid #cbd3e0; border-radius: 8px; font-size: 14px; box-sizing: border-box; }
+    .hint { font-size: 11px; color: #6b7587; margin-top: 3px; }
+    .row { display: flex; gap: 10px; }
+    .row > div { flex: 1; }
+    button { margin-top: 16px; background: #2f7df6; color: #fff; border: none; padding: 10px 16px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+    .saved { color: #3fbf6f; font-size: 12px; margin-top: 10px; height: 14px; }
+    .toggle { display: flex; align-items: center; gap: 8px; margin-top: 14px; }
+    .pro-box { border: 1px dashed #c9b24a; background: #fffdf2; border-radius: 10px; padding: 12px; margin-top: 20px; }
+    .pro-box h3 { margin: 0 0 6px; font-size: 14px; color: #8a6d00; }
+    .wl-item { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .wl-item input { flex: 1; }
+    .wl-remove { background: #f0f2f6; border: none; border-radius:2 6px; padding: 6px 10px; cursor: pointer; }
+    .locked { opacity: 0.45; pointer-events: none; }
+    .badge { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 6px; background: #c9b24a; color: #fff; margin-left: 6px; }
+  </style>
+</head>
+<body>
+  <h2>FX Best-Day Settings</h2>
+
+  <div class="row">
+    <div>
+      <label>Base currency (you have)</label>
+      <input id="base" value="USD" maxlength="3" />
+    </div>
+    <div>
+      <label>Quote currency (you want)</label>
+      <input id="quote" value="EGP" maxlength="3" />
+    </div>
+  </div>
+  <div class="hint">e.g. convert USD salary → EGP: base USD, quote EGP.</div>
+
+  <label style="margin-top:18px;">API key (optional)</label>
+  <input id="apiKey" placeholder="leave blank to use free no-key endpoint" />
+  <div class="hint">Free key at exchangerate-api.com (1,500/mo). Blank = open.er-api.com.</div>
+
+  <div class="toggle">
+    <input type="checkbox" id="wantHigh" checked />
+    <label style="margin:0;">I want the HIGHEST quote rate (sell base / convert salary)</label>
+  </div>
+  <div class="toggle">
+    <input type="checkbox" id="notify" />
+    <label style="margin:0;">Notify me in-browser when it's a good day</label>
+  </div>
+
+  <!-- PRO ZONE -->
+  <div class="pro-box">
+    <h3>⭐ Pro features <span class="badge">PRO</span></h3>
+    <div id="proBody" class="locked">
+      <label>Watchlist (multi-pair)</label>
+      <div id="watchlist"></div>
+      <button type="button" id="addPair" style="margin-top:8px;background:#6b7587;">+ Add pair</button>
+
+      <label style="margin-top:14px;">Digest alert threshold (%)</label>
+      <input id="notifyThresholdPct" type="number" step="0.1" value="0.5" />
+      <div class="hint">Telegram digest pings you when a pair is within this % of its 7-day high.</div>
+
+      <button type="button" id="genDigest" style="margin-top:12px;background:#3fbf6f;">⚙ Generate digest config</button>
+      <div class="hint">Writes fx_digest_config.json for your Hermes Telegram digest job.</div>
+    </div>
+    <div id="proLock" style="margin-top:8px;">
+      <label>Pro license key</label>
+      <div class="row">
+        <input id="proKey" placeholder="FXPRO-XXXXXXXX-XX" />
+        <button type="button" id="unlock" style="margin-top:0;flex:0 0 90px;">Unlock</button>
+      </div>
+      <div class="hint">Pro adds the daily Telegram digest and unlimited watchlist.</div>
+    </div>
+  </div>
+
+  <button id="save">Save</button>
+  <div class="saved" id="saved"></div>
+
+  <script src="fx-core.js"></script>
+  <script src="options.js"></script>
+</body>
+</html>
