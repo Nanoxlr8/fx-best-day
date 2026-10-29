@@ -204,12 +204,15 @@ function buildDigestConfig(settings, watchlist) {
   };
 }
 
+const fxCore = {
+  computeVerdict, lastNDays, avg, maxOf, minOf, recordHistory, todayStr,
+  bestDayThisWeek, exportHistory, importHistory, fetchRate,
+  verifyProKey, verifyProKeyLocal, isProVerifyRemote, makeProKey,
+  buildDigestConfig
+};
+
+// ---- Browser global for popup.js / options.js ----
+if (typeof window !== "undefined") window.fxCore = fxCore;
+
 // ---- Node export for tests ----
-if (typeof module !== "undefined" && module.exports) {
-  module.exports = {
-    computeVerdict, lastNDays, avg, maxOf, minOf, recordHistory, todayStr,
-    bestDayThisWeek, exportHistory, importHistory,
-    verifyProKey, verifyProKeyLocal, isProVerifyRemote, makeProKey,
-    buildDigestConfig
-  };
-}
+if (typeof module !== "undefined" && module.exports) module.exports = fxCore;
